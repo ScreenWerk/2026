@@ -1,11 +1,8 @@
 <script setup lang="ts">
-import type { Ref } from 'vue'
 import type { EntuEntity } from '~/types/entu'
-import type { DashboardData } from '~/types/dashboard'
 
 const props = defineProps<{ lp: EntuEntity }>()
-const db = inject('db') as Ref<DashboardData | null | undefined>
-const entuAppBase = inject<string>('dbBase', '')
+const { db } = useDashboard()
 
 const playlist = computed(() => {
   const ref = val(props.lp, 'playlist', 'reference') as string | null
@@ -14,17 +11,12 @@ const playlist = computed(() => {
 </script>
 
 <template>
-  <details class="group/lp rounded border border-pink-200 bg-pink-50 px-3 py-2">
+  <details class="db-card group/lp border-pink-200 bg-pink-50">
     <summary class="db-summary">
       <span class="db-arrow group-open/lp:rotate-90">▶</span>
       <span class="text-pink-600/70">layout_playlist</span>
       <span class="text-black">{{ val(lp, 'name') }}</span>
-      <a
-        :href="`${entuAppBase}/${lp._id}`"
-        target="_blank"
-        class="db-id-link"
-        @click.stop
-      > {{ lp._id }}</a>
+      <DashboardIdLink :id="lp._id" />
     </summary>
 
     <dl class="db-props">

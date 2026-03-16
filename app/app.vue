@@ -34,6 +34,18 @@ dl > dd:hover {
   @apply ml-auto text-black/40 underline decoration-dotted hover:text-black/60;
 }
 
+.db-card {
+  @apply rounded border px-3 py-2;
+}
+
+.db-row {
+  @apply flex items-start gap-2 rounded py-0.5 pr-2;
+}
+
+.db-link {
+  @apply text-black underline decoration-dotted hover:text-black/60;
+}
+
 .db-empty {
   @apply py-0.5 text-black/40;
 }

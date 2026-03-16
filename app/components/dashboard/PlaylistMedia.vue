@@ -1,11 +1,8 @@
 <script setup lang="ts">
-import type { Ref } from 'vue'
 import type { EntuEntity } from '~/types/entu'
-import type { DashboardData } from '~/types/dashboard'
 
 const props = defineProps<{ pm: EntuEntity }>()
-const db = inject('db') as Ref<DashboardData | null | undefined>
-const entuAppBase = inject<string>('dbBase', '')
+const { db } = useDashboard()
 
 const media = computed(() => {
   const ref = val(props.pm, 'media', 'reference') as string | null
@@ -14,7 +11,7 @@ const media = computed(() => {
 </script>
 
 <template>
-  <details class="group/pmi rounded border border-indigo-200 bg-indigo-50 px-3 py-2">
+  <details class="db-card group/pmi border-indigo-200 bg-indigo-50">
     <summary class="db-summary">
       <span class="db-arrow group-open/pmi:rotate-90">▶</span>
       <span class="w-5 shrink-0 text-right text-black/40">{{ val(pm, 'ordinal', 'number') }}</span>
@@ -25,12 +22,7 @@ const media = computed(() => {
       <template v-else>
         <span class="text-black/40">{{ val(pm, 'media', 'reference') }}</span>
       </template>
-      <a
-        :href="`${entuAppBase}/${pm._id}`"
-        target="_blank"
-        class="db-id-link"
-        @click.stop
-      > {{ pm._id }}</a>
+      <DashboardIdLink :id="pm._id" />
     </summary>
 
     <dl class="db-props">

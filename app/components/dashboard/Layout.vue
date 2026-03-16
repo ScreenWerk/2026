@@ -1,11 +1,8 @@
 <script setup lang="ts">
-import type { Ref } from 'vue'
 import type { EntuEntity } from '~/types/entu'
-import type { DashboardData } from '~/types/dashboard'
 
 const props = defineProps<{ layout: EntuEntity }>()
-const db = inject('db') as Ref<DashboardData | null | undefined>
-const entuAppBase = inject<string>('dbBase', '')
+const { db } = useDashboard()
 
 const layoutPlaylists = computed(() =>
   [...(db.value?.layoutPlaylistsByLayout[props.layout._id] ?? [])].sort(byName)
@@ -13,17 +10,12 @@ const layoutPlaylists = computed(() =>
 </script>
 
 <template>
-  <details class="group/lay rounded border border-orange-200 bg-orange-50 px-3 py-2">
+  <details class="db-card group/lay border-orange-200 bg-orange-50">
     <summary class="db-summary">
       <span class="db-arrow group-open/lay:rotate-90">▶</span>
       <span class="text-orange-600/70">layout</span>
       <span class="text-black">{{ val(layout, 'name') }}</span>
-      <a
-        :href="`${entuAppBase}/${layout._id}`"
-        target="_blank"
-        class="db-id-link"
-        @click.stop
-      > {{ layout._id }}</a>
+      <DashboardIdLink :id="layout._id" />
     </summary>
 
     <dl class="db-props">

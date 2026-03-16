@@ -1,11 +1,8 @@
 <script setup lang="ts">
-import type { Ref } from 'vue'
 import type { EntuEntity } from '~/types/entu'
-import type { DashboardData } from '~/types/dashboard'
 
 const props = defineProps<{ schedule: EntuEntity }>()
-const db = inject('db') as Ref<DashboardData | null | undefined>
-const entuAppBase = inject<string>('dbBase', '')
+const { db } = useDashboard()
 
 const layout = computed(() => {
   const ref = val(props.schedule, 'layout', 'reference') as string | null
@@ -14,17 +11,12 @@ const layout = computed(() => {
 </script>
 
 <template>
-  <details class="group/sch rounded border border-purple-200 bg-purple-50 px-3 py-2">
+  <details class="db-card group/sch border-purple-200 bg-purple-50">
     <summary class="db-summary">
       <span class="db-arrow group-open/sch:rotate-90">▶</span>
       <span class="text-purple-600/70">schedule</span>
       <span class="text-black">{{ val(schedule, 'crontab') }}</span>
-      <a
-        :href="`${entuAppBase}/${schedule._id}`"
-        target="_blank"
-        class="db-id-link"
-        @click.stop
-      > {{ schedule._id }}</a>
+      <DashboardIdLink :id="schedule._id" />
     </summary>
 
     <dl class="db-props">

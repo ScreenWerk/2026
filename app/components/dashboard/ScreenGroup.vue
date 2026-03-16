@@ -1,11 +1,8 @@
 <script setup lang="ts">
-import type { Ref } from 'vue'
 import type { EntuEntity } from '~/types/entu'
-import type { DashboardData } from '~/types/dashboard'
 
 const props = defineProps<{ sg: EntuEntity }>()
-const db = inject('db') as Ref<DashboardData | null | undefined>
-const entuAppBase = inject<string>('dbBase', '')
+const { db } = useDashboard()
 
 const screens = computed(() =>
   [...(db.value?.screensByGroup[props.sg._id] ?? [])].sort(byName)
@@ -18,17 +15,12 @@ const cfg = computed(() => {
 </script>
 
 <template>
-  <details class="group/sg rounded border border-green-200 bg-green-50 px-3 py-2">
+  <details class="db-card group/sg border-green-200 bg-green-50">
     <summary class="db-summary py-1">
       <span class="db-arrow group-open/sg:rotate-90">▶</span>
       <span class="text-green-600/70">screen_group</span>
       <span class="text-black">{{ val(sg, 'name') }}</span>
-      <a
-        :href="`${entuAppBase}/${sg._id}`"
-        target="_blank"
-        class="db-id-link"
-        @click.stop
-      > {{ sg._id }}</a>
+      <DashboardIdLink :id="sg._id" />
     </summary>
 
     <dl class="db-props">
@@ -49,7 +41,7 @@ const cfg = computed(() => {
       </div>
 
       <!-- Screens -->
-      <details class="group/scr rounded border border-sky-200 bg-sky-50 px-3 py-2">
+      <details class="db-card group/scr border-sky-200 bg-sky-50">
         <summary class="db-summary">
           <span class="db-arrow group-open/scr:rotate-90">▶</span>
           <span class="text-sky-600/70">screens</span>
@@ -59,20 +51,15 @@ const cfg = computed(() => {
           <div
             v-for="screen in screens"
             :key="screen._id"
-            class="flex items-start gap-2 rounded py-0.5 pr-2"
+            class="db-row"
           >
             <span class="text-sky-600/70">screen</span>
             <a
               :href="`/${screen._id}`"
               target="_blank"
-              class="text-black underline decoration-dotted hover:text-black/60"
+              class="db-link"
             >{{ val(screen, 'name') }}</a>
-            <a
-              :href="`${entuAppBase}/${screen._id}`"
-              target="_blank"
-              class="db-id-link"
-              @click.stop
-            > {{ screen._id }}</a>
+            <DashboardIdLink :id="screen._id" />
           </div>
           <div
             v-if="!screens.length"
