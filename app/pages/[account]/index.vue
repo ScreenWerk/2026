@@ -4,9 +4,12 @@ import { formatTimeAgo, useNow } from '@vueuse/core'
 
 useHead({ title: 'Dashboard · ScreenWerk' })
 
+const route = useRoute()
+const account = route.params.account as string
+
 const config = useRuntimeConfig()
-const entuBase = `${config.public.entuUrl}/${config.public.entuAccount}`
-const entuAppBase = `https://entu.app/${config.public.entuAccount}`
+const entuBase = `${config.public.entuUrl}/${account}`
+const entuAppBase = `https://entu.app/${account}`
 
 async function entuFetch (type: string, props: string): Promise<EntuEntity[]> {
   const params = new URLSearchParams({ '_type.string': type, props, limit: '9999' })
@@ -102,8 +105,13 @@ const groupedScreenGroups = computed(() => {
 <template>
   <div class="h-full overflow-y-auto bg-white p-6 font-mono text-sm text-black/80">
     <div class="container mx-auto space-y-6">
-      <div class="text-center text-3xl font-extralight tracking-widest text-black/20">
-        SCREENWERK
+      <div class="text-center">
+        <div class="text-3xl font-extralight tracking-widest text-black">
+          SCREENWERK
+        </div>
+        <div class="mt-1 text-sm text-black/40">
+          {{ account }}
+        </div>
       </div>
 
       <div
@@ -115,7 +123,7 @@ const groupedScreenGroups = computed(() => {
 
       <div
         v-else-if="error"
-        class="text-red-500"
+        class="fixed inset-0 flex items-center justify-center text-red-500"
       >
         {{ error.message }}
       </div>
@@ -125,7 +133,10 @@ const groupedScreenGroups = computed(() => {
         class="space-y-6"
       >
         <!-- Stats -->
-        <dl class="mx-auto grid w-fit grid-cols-[max-content_max-content] gap-x-3 gap-y-0.5 text-black/40 [&_dd]:text-right">
+        <dl
+          v-if="data.screenGroups.length"
+          class="mx-auto grid w-fit grid-cols-[max-content_max-content] gap-x-3 gap-y-0.5 text-black/40 [&_dd]:text-right"
+        >
           <dt>screen groups</dt><dd>{{ data.screenGroups.length }}</dd>
           <dt>screens</dt><dd>{{ data.screens.length }}</dd>
           <dt>configs</dt><dd>{{ data.configs.length }}</dd>
@@ -156,9 +167,9 @@ const groupedScreenGroups = computed(() => {
 
           <div
             v-if="!data.screenGroups.length"
-            class="text-black/40"
+            class="fixed inset-0 flex items-center justify-center text-red-500"
           >
-            no screen groups found — data may require authentication
+            no screen groups found
           </div>
         </div>
       </div>

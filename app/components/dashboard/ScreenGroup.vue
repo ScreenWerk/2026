@@ -3,6 +3,9 @@ import type { EntuEntity } from '~/types/entu'
 
 const props = defineProps<{ sg: EntuEntity }>()
 const { db } = useDashboard()
+const route = useRoute()
+
+const account = computed(() => route.params.account as string)
 
 const screens = computed(() =>
   [...(db.value?.screensByGroup[props.sg._id] ?? [])].sort(byName)
@@ -55,7 +58,7 @@ const cfg = computed(() => {
           >
             <span class="text-sky-600/70">screen</span>
             <a
-              :href="`/${screen._id}`"
+              :href="`/${account}/${screen._id}`"
               target="_blank"
               class="db-link"
             >{{ val(screen, 'name') }}</a>

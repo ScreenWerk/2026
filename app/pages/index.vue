@@ -1,15 +1,17 @@
 <script setup lang="ts">
+const account = ref('')
 const screenId = ref('')
 const router = useRouter()
 
 useHead({ title: 'ScreenWerk' })
 
 function open () {
+  const acc = account.value.trim()
   const id = screenId.value.trim()
 
-  if (!id) return
+  if (!acc || !id) return
 
-  router.push(`/${id}`)
+  router.push(`/${acc}/${id}`)
 }
 </script>
 
@@ -24,6 +26,14 @@ function open () {
       @submit.prevent="open"
     >
       <input
+        v-model="account"
+        type="text"
+        placeholder="Account"
+        class="w-72 rounded bg-white/10 px-4 py-2 font-mono text-sm text-white outline-none ring-1 ring-white/20 placeholder:text-white/30 focus:ring-white/60"
+        autocomplete="off"
+        spellcheck="false"
+      >
+      <input
         v-model="screenId"
         type="text"
         placeholder="Screen ID"
@@ -34,9 +44,9 @@ function open () {
       <button
         type="submit"
         class="rounded bg-white/10 px-4 py-2 font-mono text-sm text-white/70 ring-1 ring-white/20 hover:bg-white/20 hover:text-white disabled:opacity-30"
-        :disabled="!screenId.trim()"
+        :disabled="!account.trim() || !screenId.trim()"
       >
-        Open
+        Open Player
       </button>
     </form>
   </div>
