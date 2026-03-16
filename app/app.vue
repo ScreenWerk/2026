@@ -19,7 +19,7 @@ dl > dd:hover {
 }
 
 .db-arrow {
-  @apply w-3 shrink-0 text-black/40 transition-transform;
+  @apply w-3 shrink-0 text-lg leading-none transition-transform;
 }
 
 .db-props {
@@ -35,7 +35,7 @@ dl > dd:hover {
 }
 
 .db-card {
-  @apply rounded border px-3 py-2;
+  @apply border-y border-l pl-3 py-2;
 }
 
 .db-row {

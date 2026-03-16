@@ -15,9 +15,9 @@ const cfg = computed(() => {
 </script>
 
 <template>
-  <details class="db-card group/sg border-green-200 bg-green-50">
+  <details class="db-card group/sg border-green-200 bg-green-50 border-r pr-3">
     <summary class="db-summary py-1">
-      <span class="db-arrow group-open/sg:rotate-90">▶</span>
+      <span class="db-arrow group-open/sg:rotate-90 text-green-600/70">›</span>
       <span class="text-green-600/70">screen_group</span>
       <span class="text-black">{{ val(sg, 'name') }}</span>
       <DashboardIdLink :id="sg._id" />
@@ -41,9 +41,9 @@ const cfg = computed(() => {
       </div>
 
       <!-- Screens -->
-      <details class="db-card group/scr border-sky-200 bg-sky-50">
+      <details class="db-card group/scr border-sky-200 bg-sky-50 border-r">
         <summary class="db-summary">
-          <span class="db-arrow group-open/scr:rotate-90">▶</span>
+          <span class="db-arrow group-open/scr:rotate-90 text-sky-600/70">›</span>
           <span class="text-sky-600/70">screens</span>
           <span class="text-black/40">({{ screens.length }})</span>
         </summary>

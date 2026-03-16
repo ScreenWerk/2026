@@ -11,10 +11,10 @@ const playlist = computed(() => {
 </script>
 
 <template>
-  <details class="db-card group/lp border-pink-200 bg-pink-50">
+  <details class="db-card group/lp border-cyan-200 bg-cyan-50">
     <summary class="db-summary">
-      <span class="db-arrow group-open/lp:rotate-90">▶</span>
-      <span class="text-pink-600/70">layout_playlist</span>
+      <span class="db-arrow group-open/lp:rotate-90 text-cyan-600/70">›</span>
+      <span class="text-cyan-600/70">layout_playlist</span>
       <span class="text-black">{{ val(lp, 'name') }}</span>
       <DashboardIdLink :id="lp._id" />
     </summary>

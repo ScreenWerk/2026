@@ -11,10 +11,10 @@ const layout = computed(() => {
 </script>
 
 <template>
-  <details class="db-card group/sch border-purple-200 bg-purple-50">
+  <details class="db-card group/sch border-red-200 bg-red-50">
     <summary class="db-summary">
-      <span class="db-arrow group-open/sch:rotate-90">▶</span>
-      <span class="text-purple-600/70">schedule</span>
+      <span class="db-arrow group-open/sch:rotate-90 text-red-600/70">›</span>
+      <span class="text-red-600/70">schedule</span>
       <span class="text-black">{{ val(schedule, 'crontab') }}</span>
       <DashboardIdLink :id="schedule._id" />
     </summary>

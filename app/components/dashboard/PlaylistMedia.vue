@@ -13,10 +13,10 @@ const media = computed(() => {
 <template>
   <details class="db-card group/pmi border-indigo-200 bg-indigo-50">
     <summary class="db-summary">
-      <span class="db-arrow group-open/pmi:rotate-90">▶</span>
+      <span class="db-arrow group-open/pmi:rotate-90 text-fuchsia-600/70">›</span>
       <span class="w-5 shrink-0 text-right text-black/40">{{ val(pm, 'ordinal', 'number') }}</span>
       <template v-if="media">
-        <span class="text-indigo-700/70">{{ val(media, 'type') }}</span>
+        <span class="text-fuchsia-600/70">{{ val(media, 'type') }}</span>
         <span class="text-black">{{ val(media, 'name') }}</span>
       </template>
       <template v-else>

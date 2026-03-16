@@ -9,5 +9,5 @@ defineProps<{ id: string }>()
     target="_blank"
     class="db-id-link"
     @click.stop
-  > {{ id }}</a>
+  > {{ id.slice(0, 8) }}</a>
 </template>
