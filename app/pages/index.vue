@@ -16,7 +16,7 @@ function open () {
 </script>
 
 <template>
-  <div class="flex h-screen w-screen flex-col items-center justify-center gap-20 bg-black text-white">
+  <div class="relative flex h-screen w-screen flex-col items-center justify-center gap-20 bg-black text-white">
     <div class="text-5xl font-extralight tracking-widest text-white/50">
       SCREENWERK
     </div>
@@ -49,5 +49,9 @@ function open () {
         Open Player
       </button>
     </form>
+
+    <div class="absolute bottom-6 text-xs text-white/20">
+      Powered by <a href="https://entu.ee" target="_blank" rel="noopener" class="font-semibold underline decoration-dotted hover:text-white/40">Entu</a>
+    </div>
   </div>
 </template>

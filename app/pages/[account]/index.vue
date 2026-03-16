@@ -103,8 +103,8 @@ const groupedScreenGroups = computed(() => {
 </script>
 
 <template>
-  <div class="h-full overflow-y-auto bg-white p-6 font-mono text-sm text-black/80">
-    <div class="container mx-auto space-y-6">
+  <div class="h-full overflow-y-auto bg-white font-mono text-sm text-black/80">
+    <div class="container mx-auto flex min-h-full flex-col gap-6 p-6">
       <div class="text-center">
         <div class="text-3xl font-extralight tracking-widest text-black">
           SCREENWERK
@@ -116,7 +116,7 @@ const groupedScreenGroups = computed(() => {
 
       <div
         v-if="pending"
-        class="flex h-screen items-center justify-center text-black/40"
+        class="fixed inset-0 flex items-center justify-center text-black/40"
       >
         loading from entu…
       </div>
@@ -172,6 +172,10 @@ const groupedScreenGroups = computed(() => {
             no screen groups found
           </div>
         </div>
+      </div>
+
+      <div class="mt-auto text-center text-xs text-black/20">
+        Powered by <a href="https://entu.ee" target="_blank" rel="noopener" class="font-semibold underline decoration-dotted hover:text-black/40">Entu</a>
       </div>
     </div>
   </div>
