@@ -20,10 +20,12 @@ const cfg = computed(() => {
 <template>
   <details class="db-card group/sg border-r border-green-200 bg-green-50 pr-3">
     <summary class="db-summary py-1">
-      <span class="db-arrow text-green-600/70 group-open/sg:rotate-90">›</span>
-      <span class="text-green-600/70">screen_group</span>
-      <span class="text-black">{{ val(sg, 'name') }}</span>
-      <DashboardIdLink :id="sg._id" />
+      <div class="db-header">
+        <span class="db-arrow text-green-600/70 group-open/sg:rotate-90">›</span>
+        <span class="text-green-600/70">screen_group</span>
+        <dashboard-id-link :id="sg._id" />
+      </div>
+      <span class="db-name text-black">{{ val(sg, 'name') }}</span>
     </summary>
 
     <dl class="db-props">
@@ -32,7 +34,7 @@ const cfg = computed(() => {
 
     <div class="db-children">
       <!-- Configuration -->
-      <DashboardConfig
+      <dashboard-config
         v-if="cfg"
         :cfg="cfg"
       />
@@ -56,13 +58,15 @@ const cfg = computed(() => {
             :key="screen._id"
             class="db-row pl-5"
           >
-            <span class="text-sky-600/70">screen</span>
+            <div class="db-header">
+              <span class="text-sky-600/70">screen</span>
+              <dashboard-id-link :id="screen._id" />
+            </div>
             <a
               :href="`/${account}/${screen._id}`"
               target="_blank"
-              class="db-link"
+              class="db-link db-name !pl-0"
             >{{ val(screen, 'name') }}</a>
-            <DashboardIdLink :id="screen._id" />
           </div>
           <div
             v-if="!screens.length"

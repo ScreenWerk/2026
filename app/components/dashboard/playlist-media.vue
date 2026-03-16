@@ -13,16 +13,16 @@ const media = computed(() => {
 <template>
   <details class="db-card group/pmi border-indigo-200 bg-indigo-50">
     <summary class="db-summary">
-      <span class="db-arrow text-fuchsia-600/70 group-open/pmi:rotate-90">›</span>
-      <span class="w-5 shrink-0 text-right text-black/40">{{ val(pm, 'ordinal', 'number') }}</span>
-      <template v-if="media">
-        <span class="text-fuchsia-600/70">{{ val(media, 'type') }}</span>
-        <span class="text-black">{{ val(media, 'name') }}</span>
-      </template>
-      <template v-else>
-        <span class="text-black/40">{{ val(pm, 'media', 'reference') }}</span>
-      </template>
-      <dashboard-id-link :id="pm._id" />
+      <div class="db-header">
+        <span class="db-arrow text-fuchsia-600/70 group-open/pmi:rotate-90">›</span>
+        <span v-if="media" class="text-fuchsia-600/70">{{ val(media, 'type')?.toLowerCase() }}</span>
+        <span class="w-5 shrink-0 text-right text-black/40">{{ val(pm, 'ordinal', 'number') }}</span>
+        <dashboard-id-link :id="pm._id" />
+      </div>
+      <span class="db-name">
+        <span v-if="media" class="text-black">{{ val(media, 'name') }}</span>
+        <span v-else class="text-black/40">{{ val(pm, 'media', 'reference') }}</span>
+      </span>
     </summary>
 
     <dl class="db-props">

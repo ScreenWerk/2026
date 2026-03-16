@@ -12,10 +12,12 @@ const schedules = computed(() =>
 <template>
   <details class="db-card group/cfg border-r border-yellow-200 bg-yellow-50">
     <summary class="db-summary">
-      <span class="db-arrow text-yellow-600/70 group-open/cfg:rotate-90">›</span>
-      <span class="text-yellow-600/70">configuration</span>
-      <span class="text-black">{{ val(cfg, 'name') }}</span>
-      <dashboard-id-link :id="cfg._id" />
+      <div class="db-header">
+        <span class="db-arrow text-yellow-600/70 group-open/cfg:rotate-90">›</span>
+        <span class="text-yellow-600/70">configuration</span>
+        <dashboard-id-link :id="cfg._id" />
+      </div>
+      <span class="db-name text-black">{{ val(cfg, 'name') }}</span>
     </summary>
 
     <dl class="db-props">

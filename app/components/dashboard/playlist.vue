@@ -10,10 +10,12 @@ const mediaItems = computed(() => [...(db.value?.playlistMediasByPlaylist[props.
 <template>
   <details class="db-card group/pl border-blue-200 bg-blue-50">
     <summary class="db-summary">
-      <span class="db-arrow text-blue-600/70 group-open/pl:rotate-90">›</span>
-      <span class="text-blue-600/70">playlist</span>
-      <span class="text-black">{{ val(pl, 'name') }}</span>
-      <dashboard-id-link :id="pl._id" />
+      <div class="db-header">
+        <span class="db-arrow text-blue-600/70 group-open/pl:rotate-90">›</span>
+        <span class="text-blue-600/70">playlist</span>
+        <dashboard-id-link :id="pl._id" />
+      </div>
+      <span class="db-name text-black">{{ val(pl, 'name') }}</span>
     </summary>
 
     <dl class="db-props">

@@ -13,10 +13,12 @@ const layout = computed(() => {
 <template>
   <details class="db-card group/sch border-red-200 bg-red-50">
     <summary class="db-summary">
-      <span class="db-arrow text-red-600/70 group-open/sch:rotate-90">›</span>
-      <span class="text-red-600/70">schedule</span>
-      <span class="text-black">{{ val(schedule, 'crontab') }}</span>
-      <dashboard-id-link :id="schedule._id" />
+      <div class="db-header">
+        <span class="db-arrow text-red-600/70 group-open/sch:rotate-90">›</span>
+        <span class="text-red-600/70">schedule</span>
+        <dashboard-id-link :id="schedule._id" />
+      </div>
+      <span class="db-name text-black">{{ val(schedule, 'crontab') }}</span>
     </summary>
 
     <dl class="db-props">

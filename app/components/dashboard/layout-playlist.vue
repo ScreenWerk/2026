@@ -13,10 +13,12 @@ const playlist = computed(() => {
 <template>
   <details class="db-card group/lp border-cyan-200 bg-cyan-50">
     <summary class="db-summary">
-      <span class="db-arrow text-cyan-600/70 group-open/lp:rotate-90">›</span>
-      <span class="text-cyan-600/70">layout_playlist</span>
-      <span class="text-black">{{ val(lp, 'name') }}</span>
-      <dashboard-id-link :id="lp._id" />
+      <div class="db-header">
+        <span class="db-arrow text-cyan-600/70 group-open/lp:rotate-90">›</span>
+        <span class="text-cyan-600/70">layout_playlist</span>
+        <dashboard-id-link :id="lp._id" />
+      </div>
+      <span class="db-name text-black">{{ val(lp, 'name') }}</span>
     </summary>
 
     <dl class="db-props">

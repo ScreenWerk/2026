@@ -12,10 +12,12 @@ const layoutPlaylists = computed(() =>
 <template>
   <details class="db-card group/lay border-lime-200 bg-lime-50">
     <summary class="db-summary">
-      <span class="db-arrow text-lime-600/70 group-open/lay:rotate-90">›</span>
-      <span class="text-lime-600/70">layout</span>
-      <span class="text-black">{{ val(layout, 'name') }}</span>
-      <dashboard-id-link :id="layout._id" />
+      <div class="db-header">
+        <span class="db-arrow text-lime-600/70 group-open/lay:rotate-90">›</span>
+        <span class="text-lime-600/70">layout</span>
+        <dashboard-id-link :id="layout._id" />
+      </div>
+      <span class="db-name text-black">{{ val(layout, 'name') }}</span>
     </summary>
 
     <dl class="db-props">

@@ -103,7 +103,7 @@ const groupedScreenGroups = computed(() => {
 </script>
 
 <template>
-  <div class="h-full overflow-y-auto bg-white font-mono text-sm text-black/80">
+  <div class="h-full overflow-y-auto overflow-x-hidden bg-white font-mono text-sm text-black/80">
     <div class="container mx-auto flex min-h-full flex-col gap-6 p-6">
       <div class="text-center">
         <div class="text-3xl font-extralight tracking-widest text-black">
@@ -135,7 +135,7 @@ const groupedScreenGroups = computed(() => {
         <!-- Stats -->
         <dl
           v-if="data.screenGroups.length"
-          class="mx-auto grid w-fit grid-cols-[max-content_max-content] gap-x-3 gap-y-0.5 text-black/40 [&_dd]:text-right"
+          class="mx-auto grid w-full grid-cols-[1fr_max-content] gap-x-3 gap-y-0.5 text-black/40 md:w-fit md:grid-cols-[max-content_max-content] [&_dd]:text-right"
         >
           <dt>screen groups</dt><dd>{{ data.screenGroups.length }}</dd>
           <dt>screens</dt><dd>{{ data.screens.length }}</dd>
