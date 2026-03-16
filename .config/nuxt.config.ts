@@ -1,4 +1,6 @@
 const apiBase = (process.env.NUXT_PUBLIC_API_BASE || 'https://files.screenwerk.ee').replace(/\/$/, '')
+const entuUrl = (process.env.NUXT_PUBLIC_ENTU_URL || 'https://entu.app/api').replace(/\/$/, '')
+const entuAccount = process.env.NUXT_PUBLIC_ENTU_ACCOUNT || 'piletilevi'
 const escapedBase = apiBase.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')
 
 export default defineNuxtConfig({
@@ -12,6 +14,7 @@ export default defineNuxtConfig({
 
   app: {
     head: {
+      title: 'ScreenWerk Player',
       htmlAttrs: { lang: 'en' },
       link: [
         { rel: 'icon', type: 'image/png', href: '/favicon.png' }
@@ -27,6 +30,8 @@ export default defineNuxtConfig({
   runtimeConfig: {
     public: {
       apiBase,
+      entuUrl,
+      entuAccount,
       clockIntervalSeconds: 30,
       defaultUpdateIntervalMinutes: 10,
       defaultMediaDurationSeconds: 10,
