@@ -123,7 +123,7 @@ const groupedScreenGroups = computed(() => {
         class="space-y-6"
       >
         <!-- Stats -->
-        <dl class="mx-auto grid w-fit grid-cols-[max-content_1fr] gap-x-3 gap-y-0.5 text-black/40">
+        <dl class="mx-auto grid w-fit grid-cols-[max-content_max-content] gap-x-3 gap-y-0.5 text-black/40 [&_dd]:text-right">
           <dt>screen groups</dt><dd>{{ data.screenGroups.length }}</dd>
           <dt>screens</dt><dd>{{ data.screens.length }}</dd>
           <dt>configs</dt><dd>{{ data.configs.length }}</dd>
