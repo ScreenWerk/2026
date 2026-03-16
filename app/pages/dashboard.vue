@@ -143,7 +143,7 @@ const groupedScreenGroups = computed(() => {
             class="space-y-1"
           >
             <div class="text-xs font-medium uppercase tracking-widest text-black/30">
-              {{ group.label }}
+              {{ `Published ${group.label}` }}
             </div>
             <DashboardScreenGroup
               v-for="sg in group.items"
