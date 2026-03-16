@@ -31,9 +31,9 @@ const cfg = computed(() => {
       > {{ sg._id }}</a>
     </summary>
 
-    <div class="space-y-0.5 pb-1 pl-5 pt-0.5 text-black/60">
+    <dl class="grid grid-cols-[max-content_1fr] gap-x-3 gap-y-0.5 pb-1 pl-5 pt-0.5 text-black/60">
       <dt>published</dt><dd>{{ val(sg, 'published', 'datetime') ? String(val(sg, 'published', 'datetime')).slice(0, 19).replace('T', ' ') : '—' }}</dd>
-    </div>
+    </dl>
 
     <div class="ml-5 mt-1 space-y-1">
       <!-- Screens -->
