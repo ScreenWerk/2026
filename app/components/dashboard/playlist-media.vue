@@ -22,7 +22,7 @@ const media = computed(() => {
       <template v-else>
         <span class="text-black/40">{{ val(pm, 'media', 'reference') }}</span>
       </template>
-      <DashboardIdLink :id="pm._id" />
+      <dashboard-id-link :id="pm._id" />
     </summary>
 
     <dl class="db-props">

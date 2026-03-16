@@ -13,7 +13,7 @@ const mediaItems = computed(() => [...(db.value?.playlistMediasByPlaylist[props.
       <span class="db-arrow text-blue-600/70 group-open/pl:rotate-90">›</span>
       <span class="text-blue-600/70">playlist</span>
       <span class="text-black">{{ val(pl, 'name') }}</span>
-      <DashboardIdLink :id="pl._id" />
+      <dashboard-id-link :id="pl._id" />
     </summary>
 
     <dl class="db-props">
@@ -22,7 +22,7 @@ const mediaItems = computed(() => [...(db.value?.playlistMediasByPlaylist[props.
     </dl>
 
     <div class="db-children">
-      <DashboardPlaylistMedia
+      <dashboard-playlist-media
         v-for="pm in mediaItems"
         :key="pm._id"
         :pm="pm"

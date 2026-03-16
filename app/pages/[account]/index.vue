@@ -158,7 +158,7 @@ const groupedScreenGroups = computed(() => {
             <div class="text-xs font-medium uppercase tracking-widest text-black/30">
               {{ `Published ${group.label}` }}
             </div>
-            <DashboardScreenGroup
+            <dashboard-screen-group
               v-for="sg in group.items"
               :key="sg._id"
               :sg="sg"

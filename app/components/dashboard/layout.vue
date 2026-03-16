@@ -15,7 +15,7 @@ const layoutPlaylists = computed(() =>
       <span class="db-arrow text-lime-600/70 group-open/lay:rotate-90">›</span>
       <span class="text-lime-600/70">layout</span>
       <span class="text-black">{{ val(layout, 'name') }}</span>
-      <DashboardIdLink :id="layout._id" />
+      <dashboard-id-link :id="layout._id" />
     </summary>
 
     <dl class="db-props">
@@ -24,7 +24,7 @@ const layoutPlaylists = computed(() =>
     </dl>
 
     <div class="db-children">
-      <DashboardLayoutPlaylist
+      <dashboard-layout-playlist
         v-for="lp in layoutPlaylists"
         :key="lp._id"
         :lp="lp"

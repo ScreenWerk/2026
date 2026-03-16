@@ -15,7 +15,7 @@ const schedules = computed(() =>
       <span class="db-arrow text-yellow-600/70 group-open/cfg:rotate-90">›</span>
       <span class="text-yellow-600/70">configuration</span>
       <span class="text-black">{{ val(cfg, 'name') }}</span>
-      <DashboardIdLink :id="cfg._id" />
+      <dashboard-id-link :id="cfg._id" />
     </summary>
 
     <dl class="db-props">
@@ -23,7 +23,7 @@ const schedules = computed(() =>
     </dl>
 
     <div class="db-children">
-      <DashboardSchedule
+      <dashboard-schedule
         v-for="schedule in schedules"
         :key="schedule._id"
         :schedule="schedule"

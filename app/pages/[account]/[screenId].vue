@@ -22,7 +22,7 @@ const {
       :style="scheduleStyle"
       class="absolute inset-0"
     >
-      <LayoutPlaylist
+      <layout-playlist
         v-for="layoutPlaylist in validLayoutPlaylists"
         :key="layoutPlaylist.eid"
         :layout-playlist="layoutPlaylist"

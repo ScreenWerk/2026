@@ -16,7 +16,7 @@ const playlist = computed(() => {
       <span class="db-arrow text-cyan-600/70 group-open/lp:rotate-90">›</span>
       <span class="text-cyan-600/70">layout_playlist</span>
       <span class="text-black">{{ val(lp, 'name') }}</span>
-      <DashboardIdLink :id="lp._id" />
+      <dashboard-id-link :id="lp._id" />
     </summary>
 
     <dl class="db-props">
@@ -30,7 +30,7 @@ const playlist = computed(() => {
     </dl>
 
     <div class="db-children">
-      <DashboardPlaylist
+      <dashboard-playlist
         v-if="playlist"
         :pl="playlist"
       />

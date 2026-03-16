@@ -16,7 +16,7 @@ const layout = computed(() => {
       <span class="db-arrow text-red-600/70 group-open/sch:rotate-90">›</span>
       <span class="text-red-600/70">schedule</span>
       <span class="text-black">{{ val(schedule, 'crontab') }}</span>
-      <DashboardIdLink :id="schedule._id" />
+      <dashboard-id-link :id="schedule._id" />
     </summary>
 
     <dl class="db-props">
@@ -29,7 +29,7 @@ const layout = computed(() => {
     </dl>
 
     <div class="db-children">
-      <DashboardLayout
+      <dashboard-layout
         v-if="layout"
         :layout="layout"
       />
