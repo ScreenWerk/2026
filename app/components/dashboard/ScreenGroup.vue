@@ -50,7 +50,11 @@ const cfg = computed(() => {
             class="flex items-center gap-2 rounded pr-2 py-0.5"
           >
             <span class="text-sky-600/70">screen</span>
-            <span class="text-black">{{ val(screen, 'name') }}</span>
+            <a
+              :href="`/${screen._id}`"
+              target="_blank"
+              class="text-black underline decoration-dotted hover:text-black/60"
+            >{{ val(screen, 'name') }}</a>
             <a
               :href="`${entuAppBase}/${screen._id}`"
               target="_blank"

@@ -13,3 +13,7 @@ export function val(entity: EntuEntity | undefined, prop: string, type = 'auto')
 export function byName(a: EntuEntity, b: EntuEntity): number {
   return String(val(a, 'name') ?? '').localeCompare(String(val(b, 'name') ?? ''))
 }
+
+export function byOrdinal(a: EntuEntity, b: EntuEntity): number {
+  return (val(a, 'ordinal', 'number') as number ?? 0) - (val(b, 'ordinal', 'number') as number ?? 0)
+}

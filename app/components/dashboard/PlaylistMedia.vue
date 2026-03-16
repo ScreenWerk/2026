@@ -6,16 +6,21 @@ import type { DashboardData } from '~/types/dashboard'
 const props = defineProps<{ pm: EntuEntity }>()
 const db = inject('db') as Ref<DashboardData | null | undefined>
 const entuAppBase = inject<string>('dbBase', '')
+
+const media = computed(() => {
+  const ref = val(props.pm, 'media', 'reference') as string | null
+  return ref ? db.value?.mediaById[ref] : undefined
+})
 </script>
 
 <template>
-  <details class="group/pmi border border-cyan-200 rounded bg-cyan-50 px-3 py-2">
+  <details class="group/pmi border border-indigo-200 rounded bg-indigo-50 px-3 py-2">
     <summary class="flex cursor-pointer select-none list-none items-center gap-2 rounded pr-2 py-0.5 [&::-webkit-details-marker]:hidden">
       <span class="w-3 shrink-0 text-black/40 transition-transform group-open/pmi:rotate-90">▶</span>
       <span class="w-5 shrink-0 text-right text-black/40">{{ val(pm, 'ordinal', 'number') }}</span>
-      <template v-if="val(pm, 'media', 'reference') && db?.value?.mediaById[val(pm, 'media', 'reference') as string]">
-        <span class="text-cyan-700/70">{{ val(db?.value?.mediaById[val(pm, 'media', 'reference') as string], 'type') }}</span>
-        <span class="text-black">{{ val(db?.value?.mediaById[val(pm, 'media', 'reference') as string], 'name') }}</span>
+      <template v-if="media">
+        <span class="text-indigo-700/70">{{ val(media, 'type') }}</span>
+        <span class="text-black">{{ val(media, 'name') }}</span>
       </template>
       <template v-else>
         <span class="text-black/40">{{ val(pm, 'media', 'reference') }}</span>
@@ -28,20 +33,19 @@ const entuAppBase = inject<string>('dbBase', '')
       > {{pm._id }}</a>
     </summary>
 
-    <div class="space-y-0.5 pl-5 pt-0.5 pb-1 text-black/60">
-      <div>name: {{ val(pm, 'name') ?? '—' }}</div>
-      <template v-if="val(pm, 'media', 'reference') && db?.value?.mediaById[val(pm, 'media', 'reference') as string]">
-        <div>file: {{ val(db?.value?.mediaById[val(pm, 'media', 'reference') as string], 'file', 'filename') ?? '—' }}</div>
-        <div>url: {{ val(db?.value?.mediaById[val(pm, 'media', 'reference') as string], 'url') ?? '—' }}</div>
-        <div>valid_from: {{ val(db?.value?.mediaById[val(pm, 'media', 'reference') as string], 'valid_from') ?? '—' }}</div>
-        <div>valid_to: {{ val(db?.value?.mediaById[val(pm, 'media', 'reference') as string], 'valid_to') ?? '—' }}</div>
+    <dl class="grid grid-cols-[max-content_1fr] gap-x-3 gap-y-0.5 pl-5 pt-0.5 pb-1 text-black/60">
+      <template v-if="media">
+        <dt>file</dt><dd>{{ val(media, 'file', 'filename') ?? '—' }}</dd>
+        <dt>url</dt><dd>{{ val(media, 'url') ?? '—' }}</dd>
+        <dt>valid_from</dt><dd>{{ val(media, 'valid_from') ?? '—' }}</dd>
+        <dt>valid_to</dt><dd>{{ val(media, 'valid_to') ?? '—' }}</dd>
       </template>
-      <div>duration: {{ val(pm, 'duration', 'number') != null ? `${val(pm, 'duration', 'number')}s` : '—' }}</div>
-      <div>delay: {{ val(pm, 'delay', 'number') != null ? `${val(pm, 'delay', 'number')}s` : '—' }}</div>
-      <div>valid_from: {{ val(pm, 'valid_from') ?? '—' }}</div>
-      <div>valid_to: {{ val(pm, 'valid_to') ?? '—' }}</div>
-      <div>mute: {{ val(pm, 'mute', 'boolean') ? 'true' : 'false' }}</div>
-      <div>stretch: {{ val(pm, 'stretch', 'boolean') ? 'true' : 'false' }}</div>
-    </div>
+      <dt>duration</dt><dd>{{ val(pm, 'duration', 'number') != null ? `${val(pm, 'duration', 'number')}s` : '—' }}</dd>
+      <dt>delay</dt><dd>{{ val(pm, 'delay', 'number') != null ? `${val(pm, 'delay', 'number')}s` : '—' }}</dd>
+      <dt>valid_from</dt><dd>{{ val(pm, 'valid_from') ?? '—' }}</dd>
+      <dt>valid_to</dt><dd>{{ val(pm, 'valid_to') ?? '—' }}</dd>
+      <dt>mute</dt><dd>{{ val(pm, 'mute', 'boolean') ? 'true' : 'false' }}</dd>
+      <dt>stretch</dt><dd>{{ val(pm, 'stretch', 'boolean') ? 'true' : 'false' }}</dd>
+    </dl>
   </details>
 </template>

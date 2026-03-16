@@ -27,15 +27,15 @@ const playlist = computed(() => {
       > {{lp._id }}</a>
     </summary>
 
-    <div class="space-y-0.5 pl-5 pt-0.5 pb-1 text-black/60">
-      <div>left: {{ val(lp, 'left', 'number') ?? '—' }}</div>
-      <div>top: {{ val(lp, 'top', 'number') ?? '—' }}</div>
-      <div>width: {{ val(lp, 'width', 'number') ?? '—' }}</div>
-      <div>height: {{ val(lp, 'height', 'number') ?? '—' }}</div>
-      <div>units: {{ val(lp, 'in_pixels', 'boolean') ? 'px' : '%' }}</div>
-      <div>zindex: {{ val(lp, 'zindex', 'number') ?? '—' }}</div>
-      <div>loop: {{ val(lp, 'loop', 'boolean') ? 'true' : 'false' }}</div>
-    </div>
+    <dl class="grid grid-cols-[max-content_1fr] gap-x-3 gap-y-0.5 pl-5 pt-0.5 pb-1 text-black/60">
+      <dt>left</dt><dd>{{ val(lp, 'left', 'number') ?? '—' }}</dd>
+      <dt>top</dt><dd>{{ val(lp, 'top', 'number') ?? '—' }}</dd>
+      <dt>width</dt><dd>{{ val(lp, 'width', 'number') ?? '—' }}</dd>
+      <dt>height</dt><dd>{{ val(lp, 'height', 'number') ?? '—' }}</dd>
+      <dt>units</dt><dd>{{ val(lp, 'in_pixels', 'boolean') ? 'px' : '%' }}</dd>
+      <dt>zindex</dt><dd>{{ val(lp, 'zindex', 'number') ?? '—' }}</dd>
+      <dt>loop</dt><dd>{{ val(lp, 'loop', 'boolean') ? 'true' : 'false' }}</dd>
+    </dl>
 
     <div class="ml-3 mt-1 space-y-1 pl-3">
       <DashboardPlaylist v-if="playlist" :pl="playlist" />

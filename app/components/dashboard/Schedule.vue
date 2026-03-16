@@ -27,14 +27,14 @@ const layout = computed(() => {
       > {{schedule._id }}</a>
     </summary>
 
-    <div class="space-y-0.5 pl-5 pt-0.5 pb-1 text-black/60">
-      <div>name: {{ val(schedule, 'name') ?? '—' }}</div>
-      <div>ordinal: {{ val(schedule, 'ordinal', 'number') ?? '—' }}</div>
-      <div>duration: {{ val(schedule, 'duration', 'number') != null ? `${val(schedule, 'duration', 'number')}min` : '—' }}</div>
-      <div>cleanup: {{ val(schedule, 'cleanup', 'boolean') ? 'true' : 'false' }}</div>
-      <div>valid_from: {{ val(schedule, 'valid_from') ?? '—' }}</div>
-      <div>valid_to: {{ val(schedule, 'valid_to') ?? '—' }}</div>
-    </div>
+    <dl class="grid grid-cols-[max-content_1fr] gap-x-3 gap-y-0.5 pl-5 pt-0.5 pb-1 text-black/60">
+      <dt>name</dt><dd>{{ val(schedule, 'name') ?? '—' }}</dd>
+      <dt>ordinal</dt><dd>{{ val(schedule, 'ordinal', 'number') ?? '—' }}</dd>
+      <dt>duration</dt><dd>{{ val(schedule, 'duration', 'number') != null ? `${val(schedule, 'duration', 'number')}min` : '—' }}</dd>
+      <dt>cleanup</dt><dd>{{ val(schedule, 'cleanup', 'boolean') ? 'true' : 'false' }}</dd>
+      <dt>valid_from</dt><dd>{{ val(schedule, 'valid_from') ?? '—' }}</dd>
+      <dt>valid_to</dt><dd>{{ val(schedule, 'valid_to') ?? '—' }}</dd>
+    </dl>
 
     <div class="ml-3 mt-1 space-y-1 pl-3">
       <DashboardLayout v-if="layout" :layout="layout" />
