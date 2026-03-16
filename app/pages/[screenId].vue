@@ -2,6 +2,8 @@
 const route = useRoute()
 const screenId = computed(() => route.params.screenId as string)
 
+useHead({ title: 'Player · ScreenWerk' })
+
 const {
   screenConfig,
   activeSchedule,

@@ -2,6 +2,8 @@
 import type { EntuEntity, EntuFetchResult } from '~/types/entu'
 import { formatTimeAgo, useNow } from '@vueuse/core'
 
+useHead({ title: 'Dashboard · ScreenWerk' })
+
 const config = useRuntimeConfig()
 const entuBase = `${config.public.entuUrl}/${config.public.entuAccount}`
 const entuAppBase = `https://entu.app/${config.public.entuAccount}`

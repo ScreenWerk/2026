@@ -2,6 +2,8 @@
 const screenId = ref('')
 const router = useRouter()
 
+useHead({ title: 'ScreenWerk' })
+
 function open () {
   const id = screenId.value.trim()
 
