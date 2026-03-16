@@ -19,31 +19,43 @@ const cfg = computed(() => {
 
 <template>
   <details class="group/sg rounded border border-green-200 bg-green-50 px-3 py-2">
-    <summary class="flex cursor-pointer select-none list-none items-start gap-2 rounded py-1 pr-2 [&::-webkit-details-marker]:hidden">
-      <span class="w-3 shrink-0 text-black/40 transition-transform group-open/sg:rotate-90">▶</span>
+    <summary class="db-summary py-1">
+      <span class="db-arrow group-open/sg:rotate-90">▶</span>
       <span class="text-green-600/70">screen_group</span>
       <span class="text-black">{{ val(sg, 'name') }}</span>
       <a
         :href="`${entuAppBase}/${sg._id}`"
         target="_blank"
-        class="ml-auto text-black/40 underline decoration-dotted hover:text-black/60"
+        class="db-id-link"
         @click.stop
       > {{ sg._id }}</a>
     </summary>
 
-    <dl class="grid grid-cols-[max-content_1fr] gap-x-3 gap-y-0.5 pb-1 pl-5 pt-0.5 text-black/60">
+    <dl class="db-props">
       <dt>published</dt><dd>{{ val(sg, 'published', 'datetime') ? String(val(sg, 'published', 'datetime')).slice(0, 19).replace('T', ' ') : '—' }}</dd>
     </dl>
 
-    <div class="ml-5 mt-1 space-y-1">
+    <div class="db-children">
+      <!-- Configuration -->
+      <DashboardConfig
+        v-if="cfg"
+        :cfg="cfg"
+      />
+      <div
+        v-else
+        class="py-0.5 text-black/40"
+      >
+        no configuration linked
+      </div>
+
       <!-- Screens -->
-      <details class="group/scr rounded-l border-y border-l border-sky-200 bg-sky-50 px-3 py-2">
-        <summary class="flex cursor-pointer select-none list-none items-start gap-2 rounded py-0.5 pr-2 [&::-webkit-details-marker]:hidden">
-          <span class="w-3 shrink-0 text-black/40 transition-transform group-open/scr:rotate-90">▶</span>
+      <details class="group/scr rounded border border-sky-200 bg-sky-50 px-3 py-2">
+        <summary class="db-summary">
+          <span class="db-arrow group-open/scr:rotate-90">▶</span>
           <span class="text-sky-600/70">screens</span>
           <span class="text-black/40">({{ screens.length }})</span>
         </summary>
-        <div class="ml-3 mt-1 space-y-0.5 pl-3">
+        <div class="mt-1 space-y-0.5">
           <div
             v-for="screen in screens"
             :key="screen._id"
@@ -58,30 +70,18 @@ const cfg = computed(() => {
             <a
               :href="`${entuAppBase}/${screen._id}`"
               target="_blank"
-              class="ml-auto text-black/40 underline decoration-dotted hover:text-black/60"
+              class="db-id-link"
               @click.stop
             > {{ screen._id }}</a>
           </div>
           <div
             v-if="!screens.length"
-            class="py-0.5 text-black/40"
+            class="db-empty"
           >
             no screens
           </div>
         </div>
       </details>
-
-      <!-- Configuration -->
-      <DashboardConfig
-        v-if="cfg"
-        :cfg="cfg"
-      />
-      <div
-        v-else
-        class="py-0.5 text-black/40"
-      >
-        no configuration linked
-      </div>
     </div>
   </details>
 </template>

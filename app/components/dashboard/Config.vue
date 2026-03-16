@@ -14,23 +14,23 @@ const schedules = computed(() =>
 
 <template>
   <details class="group/cfg rounded border border-amber-200 bg-amber-50 px-3 py-2">
-    <summary class="flex cursor-pointer select-none list-none items-start gap-2 rounded py-0.5 pr-2 [&::-webkit-details-marker]:hidden">
-      <span class="w-3 shrink-0 text-black/40 transition-transform group-open/cfg:rotate-90">▶</span>
+    <summary class="db-summary">
+      <span class="db-arrow group-open/cfg:rotate-90">▶</span>
       <span class="text-yellow-600/70">configuration</span>
       <span class="text-black">{{ val(cfg, 'name') }}</span>
       <a
         :href="`${entuAppBase}/${cfg._id}`"
         target="_blank"
-        class="ml-auto text-black/40 underline decoration-dotted hover:text-black/60"
+        class="db-id-link"
         @click.stop
       > {{ cfg._id }}</a>
     </summary>
 
-    <dl class="grid grid-cols-[max-content_1fr] gap-x-3 gap-y-0.5 pb-1 pl-5 pt-0.5 text-black/60">
+    <dl class="db-props">
       <dt>update_interval</dt><dd>{{ val(cfg, 'update_interval', 'number') ?? '—' }}</dd>
     </dl>
 
-    <div class="ml-5 mt-1 space-y-1">
+    <div class="db-children">
       <DashboardSchedule
         v-for="schedule in schedules"
         :key="schedule._id"
@@ -38,7 +38,7 @@ const schedules = computed(() =>
       />
       <div
         v-if="!schedules.length"
-        class="py-0.5 text-black/40"
+        class="db-empty"
       >
         no schedules
       </div>

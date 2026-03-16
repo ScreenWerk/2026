@@ -15,19 +15,19 @@ const layout = computed(() => {
 
 <template>
   <details class="group/sch rounded border border-purple-200 bg-purple-50 px-3 py-2">
-    <summary class="flex cursor-pointer select-none list-none items-start gap-2 rounded py-0.5 pr-2 [&::-webkit-details-marker]:hidden">
-      <span class="w-3 shrink-0 text-black/40 transition-transform group-open/sch:rotate-90">▶</span>
+    <summary class="db-summary">
+      <span class="db-arrow group-open/sch:rotate-90">▶</span>
       <span class="text-purple-600/70">schedule</span>
       <span class="text-black">{{ val(schedule, 'crontab') }}</span>
       <a
         :href="`${entuAppBase}/${schedule._id}`"
         target="_blank"
-        class="ml-auto text-black/40 underline decoration-dotted hover:text-black/60"
+        class="db-id-link"
         @click.stop
       > {{ schedule._id }}</a>
     </summary>
 
-    <dl class="grid grid-cols-[max-content_1fr] gap-x-3 gap-y-0.5 pb-1 pl-5 pt-0.5 text-black/60">
+    <dl class="db-props">
       <dt>name</dt><dd>{{ val(schedule, 'name') ?? '—' }}</dd>
       <dt>ordinal</dt><dd>{{ val(schedule, 'ordinal', 'number') ?? '—' }}</dd>
       <dt>duration</dt><dd>{{ val(schedule, 'duration', 'number') != null ? `${val(schedule, 'duration', 'number')}min` : '—' }}</dd>
@@ -36,14 +36,14 @@ const layout = computed(() => {
       <dt>valid_to</dt><dd>{{ val(schedule, 'valid_to') ?? '—' }}</dd>
     </dl>
 
-    <div class="ml-5 mt-1 space-y-1">
+    <div class="db-children">
       <DashboardLayout
         v-if="layout"
         :layout="layout"
       />
       <div
         v-else
-        class="py-0.5 text-black/40"
+        class="db-empty"
       >
         no layout linked
       </div>

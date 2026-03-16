@@ -15,8 +15,8 @@ const media = computed(() => {
 
 <template>
   <details class="group/pmi rounded border border-indigo-200 bg-indigo-50 px-3 py-2">
-    <summary class="flex cursor-pointer select-none list-none items-start gap-2 rounded py-0.5 pr-2 [&::-webkit-details-marker]:hidden">
-      <span class="w-3 shrink-0 text-black/40 transition-transform group-open/pmi:rotate-90">▶</span>
+    <summary class="db-summary">
+      <span class="db-arrow group-open/pmi:rotate-90">▶</span>
       <span class="w-5 shrink-0 text-right text-black/40">{{ val(pm, 'ordinal', 'number') }}</span>
       <template v-if="media">
         <span class="text-indigo-700/70">{{ val(media, 'type') }}</span>
@@ -28,12 +28,12 @@ const media = computed(() => {
       <a
         :href="`${entuAppBase}/${pm._id}`"
         target="_blank"
-        class="ml-auto text-black/40 underline decoration-dotted hover:text-black/60"
+        class="db-id-link"
         @click.stop
       > {{ pm._id }}</a>
     </summary>
 
-    <dl class="grid grid-cols-[max-content_1fr] gap-x-3 gap-y-0.5 pb-1 pl-5 pt-0.5 text-black/60">
+    <dl class="db-props">
       <template v-if="media">
         <dt>file</dt><dd>{{ val(media, 'file', 'filename') ?? '—' }}</dd>
         <dt>url</dt><dd>{{ val(media, 'url') ?? '—' }}</dd>
