@@ -3,3 +3,13 @@
     <NuxtPage />
   </div>
 </template>
+
+<style>
+@reference "tailwindcss";
+dl > dt:hover,
+dl > dt:hover + dd,
+dl > dt:has(+ dd:hover),
+dl > dd:hover {
+  @apply text-black;
+}
+</style>

@@ -14,8 +14,8 @@ const playlist = computed(() => {
 </script>
 
 <template>
-  <details class="group/lp border border-pink-200 rounded bg-pink-50 px-3 py-2">
-    <summary class="flex cursor-pointer select-none list-none items-center gap-2 rounded pr-2 py-0.5 [&::-webkit-details-marker]:hidden">
+  <details class="group/lp rounded border border-pink-200 bg-pink-50 px-3 py-2">
+    <summary class="flex cursor-pointer select-none list-none items-start gap-2 rounded py-0.5 pr-2 [&::-webkit-details-marker]:hidden">
       <span class="w-3 shrink-0 text-black/40 transition-transform group-open/lp:rotate-90">▶</span>
       <span class="text-pink-600/70">layout_playlist</span>
       <span class="text-black">{{ val(lp, 'name') }}</span>
@@ -24,10 +24,10 @@ const playlist = computed(() => {
         target="_blank"
         class="ml-auto text-black/40 underline decoration-dotted hover:text-black/60"
         @click.stop
-      > {{lp._id }}</a>
+      > {{ lp._id }}</a>
     </summary>
 
-    <dl class="grid grid-cols-[max-content_1fr] gap-x-3 gap-y-0.5 pl-5 pt-0.5 pb-1 text-black/60">
+    <dl class="grid grid-cols-[max-content_1fr] gap-x-3 gap-y-0.5 pb-1 pl-5 pt-0.5 text-black/60">
       <dt>left</dt><dd>{{ val(lp, 'left', 'number') ?? '—' }}</dd>
       <dt>top</dt><dd>{{ val(lp, 'top', 'number') ?? '—' }}</dd>
       <dt>width</dt><dd>{{ val(lp, 'width', 'number') ?? '—' }}</dd>
@@ -37,9 +37,15 @@ const playlist = computed(() => {
       <dt>loop</dt><dd>{{ val(lp, 'loop', 'boolean') ? 'true' : 'false' }}</dd>
     </dl>
 
-    <div class="ml-3 mt-1 space-y-1 pl-3">
-      <DashboardPlaylist v-if="playlist" :pl="playlist" />
-      <div v-else class="py-0.5 text-black/40">
+    <div class="ml-5 mt-1 space-y-1">
+      <DashboardPlaylist
+        v-if="playlist"
+        :pl="playlist"
+      />
+      <div
+        v-else
+        class="py-0.5 text-black/40"
+      >
         no playlist linked
       </div>
     </div>

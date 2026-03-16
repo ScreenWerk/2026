@@ -8,13 +8,13 @@ const db = inject('db') as Ref<DashboardData | null | undefined>
 const entuAppBase = inject<string>('dbBase', '')
 
 const schedules = computed(() =>
-  [...(db.value?.schedulesByConfig[props.cfg._id] ?? [])].sort(byName),
+  [...(db.value?.schedulesByConfig[props.cfg._id] ?? [])].sort(byName)
 )
 </script>
 
 <template>
-  <details class="group/cfg border border-amber-200 rounded bg-amber-50 px-3 py-2">
-    <summary class="flex cursor-pointer select-none list-none items-center gap-2 rounded pr-2 py-0.5 [&::-webkit-details-marker]:hidden">
+  <details class="group/cfg rounded border border-amber-200 bg-amber-50 px-3 py-2">
+    <summary class="flex cursor-pointer select-none list-none items-start gap-2 rounded py-0.5 pr-2 [&::-webkit-details-marker]:hidden">
       <span class="w-3 shrink-0 text-black/40 transition-transform group-open/cfg:rotate-90">▶</span>
       <span class="text-yellow-600/70">configuration</span>
       <span class="text-black">{{ val(cfg, 'name') }}</span>
@@ -23,16 +23,23 @@ const schedules = computed(() =>
         target="_blank"
         class="ml-auto text-black/40 underline decoration-dotted hover:text-black/60"
         @click.stop
-      > {{cfg._id }}</a>
+      > {{ cfg._id }}</a>
     </summary>
 
-    <dl class="grid grid-cols-[max-content_1fr] gap-x-3 gap-y-0.5 pl-5 pt-0.5 pb-1 text-black/60">
+    <dl class="grid grid-cols-[max-content_1fr] gap-x-3 gap-y-0.5 pb-1 pl-5 pt-0.5 text-black/60">
       <dt>update_interval</dt><dd>{{ val(cfg, 'update_interval', 'number') ?? '—' }}</dd>
     </dl>
 
-    <div class="ml-3 mt-1 space-y-1 pl-3">
-      <DashboardSchedule v-for="schedule in schedules" :key="schedule._id" :schedule="schedule" />
-      <div v-if="!schedules.length" class="py-0.5 text-black/40">
+    <div class="ml-5 mt-1 space-y-1">
+      <DashboardSchedule
+        v-for="schedule in schedules"
+        :key="schedule._id"
+        :schedule="schedule"
+      />
+      <div
+        v-if="!schedules.length"
+        class="py-0.5 text-black/40"
+      >
         no schedules
       </div>
     </div>

@@ -1,6 +1,6 @@
 import type { EntuEntity } from '~/types/entu'
 
-export function val(entity: EntuEntity | undefined, prop: string, type = 'auto'): string | boolean | number | null {
+export function val (entity: EntuEntity | undefined, prop: string, type = 'auto'): string | boolean | number | null {
   if (!entity) return null
   const arr = entity[prop] as { string?: string, boolean?: boolean, number?: number, reference?: string, datetime?: string, filename?: string }[] | undefined
   if (!arr?.length) return null
@@ -10,10 +10,10 @@ export function val(entity: EntuEntity | undefined, prop: string, type = 'auto')
   return p.string ?? p.reference ?? p.boolean ?? p.number ?? p.datetime ?? p.filename ?? null
 }
 
-export function byName(a: EntuEntity, b: EntuEntity): number {
+export function byName (a: EntuEntity, b: EntuEntity): number {
   return String(val(a, 'name') ?? '').localeCompare(String(val(b, 'name') ?? ''))
 }
 
-export function byOrdinal(a: EntuEntity, b: EntuEntity): number {
+export function byOrdinal (a: EntuEntity, b: EntuEntity): number {
   return (val(a, 'ordinal', 'number') as number ?? 0) - (val(b, 'ordinal', 'number') as number ?? 0)
 }
