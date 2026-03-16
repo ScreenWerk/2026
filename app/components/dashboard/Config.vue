@@ -10,9 +10,9 @@ const schedules = computed(() =>
 </script>
 
 <template>
-  <details class="db-card group/cfg border-yellow-200 bg-yellow-50 border-r">
+  <details class="db-card group/cfg border-r border-yellow-200 bg-yellow-50">
     <summary class="db-summary">
-      <span class="db-arrow group-open/cfg:rotate-90 text-yellow-600/70">›</span>
+      <span class="db-arrow text-yellow-600/70 group-open/cfg:rotate-90">›</span>
       <span class="text-yellow-600/70">configuration</span>
       <span class="text-black">{{ val(cfg, 'name') }}</span>
       <DashboardIdLink :id="cfg._id" />
