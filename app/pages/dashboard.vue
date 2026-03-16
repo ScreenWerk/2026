@@ -76,6 +76,10 @@ provide('dbBase', entuAppBase)
 
 <template>
   <div class="h-full overflow-y-auto bg-white p-6 font-mono text-sm text-black/80">
+    <div class="mb-6 text-center text-3xl font-extralight tracking-widest text-black/20">
+      SCREENWERK
+    </div>
+
     <div v-if="pending" class="text-black/40">
       loading from entu…
     </div>
@@ -86,17 +90,17 @@ provide('dbBase', entuAppBase)
 
     <div v-else-if="data" class="space-y-1">
       <!-- Stats -->
-      <div class="mb-4 space-y-0.5 text-black/40">
-        <div>screen groups: {{ data.screenGroups.length }}</div>
-        <div>screens: {{ data.screens.length }}</div>
-        <div>configs: {{ data.configs.length }}</div>
-        <div>schedules: {{ data.schedules.length }}</div>
-        <div>layouts: {{ data.layouts.length }}</div>
-        <div>layout_playlists: {{ data.layoutPlaylists.length }}</div>
-        <div>playlists: {{ data.playlists.length }}</div>
-        <div>playlist_medias: {{ data.playlistMedias.length }}</div>
-        <div>media: {{ data.medias.length }}</div>
-      </div>
+      <dl class="mb-4 mx-auto grid w-fit grid-cols-[max-content_1fr] gap-x-3 gap-y-0.5 text-black/40">
+        <dt>screen groups</dt><dd>{{ data.screenGroups.length }}</dd>
+        <dt>screens</dt><dd>{{ data.screens.length }}</dd>
+        <dt>configs</dt><dd>{{ data.configs.length }}</dd>
+        <dt>schedules</dt><dd>{{ data.schedules.length }}</dd>
+        <dt>layouts</dt><dd>{{ data.layouts.length }}</dd>
+        <dt>layout_playlists</dt><dd>{{ data.layoutPlaylists.length }}</dd>
+        <dt>playlists</dt><dd>{{ data.playlists.length }}</dd>
+        <dt>playlist_medias</dt><dd>{{ data.playlistMedias.length }}</dd>
+        <dt>media</dt><dd>{{ data.medias.length }}</dd>
+      </dl>
 
       <!-- Screen Groups -->
       <DashboardScreenGroup v-for="sg in data.screenGroups" :key="sg._id" :sg="sg" />
