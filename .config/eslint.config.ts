@@ -13,6 +13,9 @@ export default withNuxt({
 }).prepend([
   ...tailwind.configs['flat/recommended'],
   { settings: {
-    tailwindcss: { config: '.config/tailwind.config.ts' }
+    tailwindcss: {
+      config: '.config/tailwind.config.ts',
+      whitelist: ['db-.+']
+    }
   } }
 ])
