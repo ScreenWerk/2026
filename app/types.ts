@@ -20,7 +20,7 @@ export interface Schedule {
   eid: string
   crontab: string
   cleanup: boolean
-  duration?: number // Minutes active after cron tick; absent = unlimited.
+  duration?: number // Seconds active after cron tick; absent = unlimited.
   ordinal: number
   validFrom?: string
   validTo?: string

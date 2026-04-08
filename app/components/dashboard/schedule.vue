@@ -30,7 +30,7 @@ const layout = computed(() => {
       <dd>
         {{
           val(schedule, 'duration', 'number') != null
-            ? `${val(schedule, 'duration', 'number')}min`
+            ? `${val(schedule, 'duration', 'number')}s`
             : '—'
         }}
       </dd>

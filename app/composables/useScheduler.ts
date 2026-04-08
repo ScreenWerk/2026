@@ -40,7 +40,7 @@ export function resolveActiveSchedule(
     if (!lastTick) continue
 
     if (s.duration) {
-      const windowEnd = new Date(lastTick.getTime() + s.duration * 60_000)
+      const windowEnd = new Date(lastTick.getTime() + s.duration * 1_000)
 
       if (now > windowEnd) continue
     }
