@@ -3,6 +3,8 @@
   "private": true,
   "type": "module",
   "scripts": {
+    "format": "prettier --write \"app/**/*.{ts,vue}\"",
+    "format:check": "prettier --check \"app/**/*.{ts,vue}\"",
     "lint": "eslint . --fix --config .config/eslint.config.ts",
     "dev": "nuxt dev",
     "build": "nuxt build",
@@ -22,8 +24,10 @@
     "@vueuse/core": "14.2.1",
     "cron-parser": "5.5.0",
     "eslint": "10.0.3",
+    "eslint-config-prettier": "^10.1.8",
     "eslint-plugin-tailwindcss": "3.18.2",
     "nuxt": "4.4.2",
+    "prettier": "^3.8.1",
     "typescript": "5.9.3"
   }
 }

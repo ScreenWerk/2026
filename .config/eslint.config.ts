@@ -1,13 +1,10 @@
 // @ts-check
+import eslintConfigPrettier from 'eslint-config-prettier'
 import tailwind from 'eslint-plugin-tailwindcss'
 import withNuxt from '../.nuxt/eslint.config.mjs'
 
 export default withNuxt({
   rules: {
-    '@stylistic/arrow-parens': ['error', 'always'],
-    '@stylistic/comma-dangle': ['error', 'never'],
-    '@stylistic/quote-props': ['error', 'as-needed'],
-    '@stylistic/space-before-function-paren': ['error', 'always'],
     'object-shorthand': ['error', 'always']
   }
 }).prepend([
@@ -18,4 +15,4 @@ export default withNuxt({
       whitelist: ['db-.+']
     }
   } }
-])
+]).append(eslintConfigPrettier)
