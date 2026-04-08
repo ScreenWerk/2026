@@ -3,11 +3,19 @@ import eslintConfigPrettier from 'eslint-config-prettier'
 import tailwind from 'eslint-plugin-tailwindcss'
 import withNuxt from '../.nuxt/eslint.config.mjs'
 
-export default withNuxt({
-  rules: {
-    'object-shorthand': ['error', 'always']
+export default withNuxt(
+  {
+    rules: {
+      'object-shorthand': ['error', 'always']
+    }
+  },
+  {
+    files: ['tests/**/*.ts'],
+    rules: {
+      '@typescript-eslint/no-explicit-any': 'off'
+    }
   }
-}).prepend([
+).prepend([
   ...tailwind.configs['flat/recommended'],
   { settings: {
     tailwindcss: {

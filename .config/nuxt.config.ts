@@ -67,7 +67,7 @@ export default defineNuxtConfig({
     workbox: {
       navigateFallback: '/',
       globPatterns: ['**/*.{js,css,html,ico,png}'],
-      globIgnores: ['**/_payload.json'],
+      globIgnores: ['**/_payload.json', '**/404*', '**/200*'],
       runtimeCaching: [
         {
           // Config JSON: NetworkFirst to pick up updates, fall back offline.
