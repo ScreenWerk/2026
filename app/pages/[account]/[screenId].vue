@@ -1,8 +1,11 @@
 <script setup lang="ts">
+import { BUILD_PR } from '~/version'
+
 const route = useRoute()
 const screenId = computed(() => route.params.screenId as string)
 
 useHead({ title: 'Player · ScreenWerk' })
+console.log(`[Screenwerk] ScreenWerk/2026#${BUILD_PR}`)
 
 const {
   screenConfig,
