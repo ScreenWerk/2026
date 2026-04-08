@@ -6,14 +6,14 @@ import type { ScreenConfig } from '~/types'
  * - Skips update if publishedAt is unchanged (no-op on identical config)
  * - On network failure, falls back silently (Workbox serves cached config)
  */
-export function useScreenConfig (getScreenId: () => string) {
+export function useScreenConfig(getScreenId: () => string) {
   const runtimeConfig = useRuntimeConfig()
   const apiBase = runtimeConfig.public.apiBase as string
 
   const screenConfig = ref<ScreenConfig | null>(null)
 
   // Fetch, normalize, and cache the screen config.
-  async function loadConfig () {
+  async function loadConfig() {
     try {
       const url = `${apiBase}/screen/${getScreenId()}.json`
       const data = await $fetch<ScreenConfig>(url)
@@ -29,12 +29,14 @@ export function useScreenConfig (getScreenId: () => string) {
         }
       }
 
-      if (!screenConfig.value || data.publishedAt !== screenConfig.value.publishedAt) {
+      if (
+        !screenConfig.value ||
+        data.publishedAt !== screenConfig.value.publishedAt
+      ) {
         screenConfig.value = data
         precacheMedia(data)
       }
-    }
-    catch {
+    } catch {
       // Network failure — Workbox serves cached config.
     }
   }

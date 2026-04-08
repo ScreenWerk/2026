@@ -5,7 +5,7 @@ import type { Ref } from 'vue'
  * Manages delayed playback for video/audio elements.
  * Handles setup, cleanup, and reactivity for media playback.
  */
-export function useMediaPlayback<T extends HTMLMediaElement> (
+export function useMediaPlayback<T extends HTMLMediaElement>(
   elementRef: Ref<T | null>,
   getMedia: () => PlaylistMedia,
   onPlayError: (error: unknown) => void
@@ -13,7 +13,7 @@ export function useMediaPlayback<T extends HTMLMediaElement> (
   let delayTimer: ReturnType<typeof setTimeout> | null = null
 
   // Clear any active delay timer.
-  function clearTimers () {
+  function clearTimers() {
     if (delayTimer) {
       clearTimeout(delayTimer)
       delayTimer = null
@@ -21,12 +21,12 @@ export function useMediaPlayback<T extends HTMLMediaElement> (
   }
 
   // Start playing the media element.
-  function play () {
+  function play() {
     elementRef.value?.play().catch(onPlayError)
   }
 
   // Setup playback: load and start play after delay.
-  function setup () {
+  function setup() {
     clearTimers()
 
     if (elementRef.value) {
@@ -39,8 +39,7 @@ export function useMediaPlayback<T extends HTMLMediaElement> (
 
     if (delay > 0) {
       delayTimer = setTimeout(play, delay * 1000)
-    }
-    else {
+    } else {
       nextTick(play)
     }
   }

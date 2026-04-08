@@ -4,7 +4,9 @@ import type { EntuEntity } from '~/types/entu'
 const props = defineProps<{ pl: EntuEntity }>()
 const { db } = useDashboard()
 
-const mediaItems = computed(() => [...(db.value?.playlistMediasByPlaylist[props.pl._id] ?? [])].sort(byOrdinal))
+const mediaItems = computed(() =>
+  [...(db.value?.playlistMediasByPlaylist[props.pl._id] ?? [])].sort(byOrdinal)
+)
 </script>
 
 <template>
@@ -19,8 +21,10 @@ const mediaItems = computed(() => [...(db.value?.playlistMediasByPlaylist[props.
     </summary>
 
     <dl class="db-props">
-      <dt>valid_from</dt><dd>{{ val(pl, 'valid_from') ?? '—' }}</dd>
-      <dt>valid_to</dt><dd>{{ val(pl, 'valid_to') ?? '—' }}</dd>
+      <dt>valid_from</dt>
+      <dd>{{ val(pl, 'valid_from') ?? '—' }}</dd>
+      <dt>valid_to</dt>
+      <dd>{{ val(pl, 'valid_to') ?? '—' }}</dd>
     </dl>
 
     <div class="db-children">
@@ -29,12 +33,7 @@ const mediaItems = computed(() => [...(db.value?.playlistMediasByPlaylist[props.
         :key="pm._id"
         :pm="pm"
       />
-      <div
-        v-if="!mediaItems.length"
-        class="db-empty"
-      >
-        no media items
-      </div>
+      <div v-if="!mediaItems.length" class="db-empty">no media items</div>
     </div>
   </details>
 </template>

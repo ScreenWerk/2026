@@ -1,6 +1,11 @@
 export type MediaType = 'Image' | 'Video' | 'Audio' | 'URL'
 
-export const MEDIA_TYPES: readonly MediaType[] = ['Image', 'Video', 'Audio', 'URL'] as const
+export const MEDIA_TYPES: readonly MediaType[] = [
+  'Image',
+  'Video',
+  'Audio',
+  'URL'
+] as const
 
 export interface ScreenConfig {
   configurationEid: string

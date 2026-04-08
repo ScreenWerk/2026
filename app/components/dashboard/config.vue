@@ -13,7 +13,9 @@ const schedules = computed(() =>
   <details class="db-card group/cfg border-r border-yellow-200 bg-yellow-50">
     <summary class="db-summary">
       <div class="db-header">
-        <span class="db-arrow text-yellow-600/70 group-open/cfg:rotate-90">›</span>
+        <span class="db-arrow text-yellow-600/70 group-open/cfg:rotate-90"
+          >›</span
+        >
         <span class="text-yellow-600/70">configuration</span>
         <dashboard-id-link :id="cfg._id" />
       </div>
@@ -21,7 +23,8 @@ const schedules = computed(() =>
     </summary>
 
     <dl class="db-props">
-      <dt>update_interval</dt><dd>{{ val(cfg, 'update_interval', 'number') ?? '—' }}</dd>
+      <dt>update_interval</dt>
+      <dd>{{ val(cfg, 'update_interval', 'number') ?? '—' }}</dd>
     </dl>
 
     <div class="db-children">
@@ -30,12 +33,7 @@ const schedules = computed(() =>
         :key="schedule._id"
         :schedule="schedule"
       />
-      <div
-        v-if="!schedules.length"
-        class="db-empty"
-      >
-        no schedules
-      </div>
+      <div v-if="!schedules.length" class="db-empty">no schedules</div>
     </div>
   </details>
 </template>

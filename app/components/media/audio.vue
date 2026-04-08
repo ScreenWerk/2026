@@ -23,6 +23,13 @@ useMediaPlayback(
     :src="src"
     :muted="media.mute"
     @ended="emit('ended')"
-    @error="(e) => console.warn('[audio] load error', src, (e.target as HTMLAudioElement)?.error)"
+    @error="
+      (e) =>
+        console.warn(
+          '[audio] load error',
+          src,
+          (e.target as HTMLAudioElement)?.error
+        )
+    "
   />
 </template>

@@ -13,7 +13,9 @@ const layoutPlaylists = computed(() =>
   <details class="db-card group/lay border-lime-200 bg-lime-50">
     <summary class="db-summary">
       <div class="db-header">
-        <span class="db-arrow text-lime-600/70 group-open/lay:rotate-90">›</span>
+        <span class="db-arrow text-lime-600/70 group-open/lay:rotate-90"
+          >›</span
+        >
         <span class="text-lime-600/70">layout</span>
         <dashboard-id-link :id="layout._id" />
       </div>
@@ -21,8 +23,10 @@ const layoutPlaylists = computed(() =>
     </summary>
 
     <dl class="db-props">
-      <dt>width</dt><dd>{{ val(layout, 'width', 'number') ?? '—' }}</dd>
-      <dt>height</dt><dd>{{ val(layout, 'height', 'number') ?? '—' }}</dd>
+      <dt>width</dt>
+      <dd>{{ val(layout, 'width', 'number') ?? '—' }}</dd>
+      <dt>height</dt>
+      <dd>{{ val(layout, 'height', 'number') ?? '—' }}</dd>
     </dl>
 
     <div class="db-children">
@@ -31,12 +35,7 @@ const layoutPlaylists = computed(() =>
         :key="lp._id"
         :lp="lp"
       />
-      <div
-        v-if="!layoutPlaylists.length"
-        class="db-empty"
-      >
-        no zones
-      </div>
+      <div v-if="!layoutPlaylists.length" class="db-empty">no zones</div>
     </div>
   </details>
 </template>
