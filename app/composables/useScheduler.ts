@@ -7,11 +7,12 @@ import type { Schedule } from '~/types'
  *
  * Note: cron-parser v5 replaced parseExpression() with CronExpressionParser.parse()
  */
-export function getLastCronTick (crontab: string, now: Date): Date | null {
+export function getLastCronTick(crontab: string, now: Date): Date | null {
   try {
-    return CronExpressionParser.parse(crontab, { currentDate: now }).prev().toDate()
-  }
-  catch {
+    return CronExpressionParser.parse(crontab, { currentDate: now })
+      .prev()
+      .toDate()
+  } catch {
     return null
   }
 }
@@ -26,8 +27,11 @@ export function getLastCronTick (crontab: string, now: Date): Date | null {
  * 3. If schedule.duration is set, exclude if now is past lastTick + duration
  * 4. Sort: most recent tick first; tie-break: highest ordinal wins
  */
-export function resolveActiveSchedule (schedules: Schedule[], now: Date): Schedule | null {
-  const candidates: { schedule: Schedule, lastTick: Date }[] = []
+export function resolveActiveSchedule(
+  schedules: Schedule[],
+  now: Date
+): Schedule | null {
+  const candidates: { schedule: Schedule; lastTick: Date }[] = []
 
   for (const s of schedules) {
     if (!isWithinValidityWindow(s, now)) continue

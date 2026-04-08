@@ -42,12 +42,8 @@ const {
       class="pointer-events-none absolute bottom-4 right-4 select-none font-mono text-xs text-white/20"
     >
       <div>{{ screenId }}</div>
-      <div v-if="screenConfig">
-        updated {{ screenConfig.publishedAt }}
-      </div>
-      <div v-else>
-        loading...
-      </div>
+      <div v-if="screenConfig">updated {{ screenConfig.publishedAt }}</div>
+      <div v-else>loading...</div>
     </div>
   </div>
 </template>

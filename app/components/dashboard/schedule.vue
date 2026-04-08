@@ -22,25 +22,29 @@ const layout = computed(() => {
     </summary>
 
     <dl class="db-props">
-      <dt>name</dt><dd>{{ val(schedule, 'name') ?? '—' }}</dd>
-      <dt>ordinal</dt><dd>{{ val(schedule, 'ordinal', 'number') ?? '—' }}</dd>
-      <dt>duration</dt><dd>{{ val(schedule, 'duration', 'number') != null ? `${val(schedule, 'duration', 'number')}min` : '—' }}</dd>
-      <dt>cleanup</dt><dd>{{ val(schedule, 'cleanup', 'boolean') ? 'true' : 'false' }}</dd>
-      <dt>valid_from</dt><dd>{{ val(schedule, 'valid_from') ?? '—' }}</dd>
-      <dt>valid_to</dt><dd>{{ val(schedule, 'valid_to') ?? '—' }}</dd>
+      <dt>name</dt>
+      <dd>{{ val(schedule, 'name') ?? '—' }}</dd>
+      <dt>ordinal</dt>
+      <dd>{{ val(schedule, 'ordinal', 'number') ?? '—' }}</dd>
+      <dt>duration</dt>
+      <dd>
+        {{
+          val(schedule, 'duration', 'number') != null
+            ? `${val(schedule, 'duration', 'number')}min`
+            : '—'
+        }}
+      </dd>
+      <dt>cleanup</dt>
+      <dd>{{ val(schedule, 'cleanup', 'boolean') ? 'true' : 'false' }}</dd>
+      <dt>valid_from</dt>
+      <dd>{{ val(schedule, 'valid_from') ?? '—' }}</dd>
+      <dt>valid_to</dt>
+      <dd>{{ val(schedule, 'valid_to') ?? '—' }}</dd>
     </dl>
 
     <div class="db-children">
-      <dashboard-layout
-        v-if="layout"
-        :layout="layout"
-      />
-      <div
-        v-else
-        class="db-empty"
-      >
-        no layout linked
-      </div>
+      <dashboard-layout v-if="layout" :layout="layout" />
+      <div v-else class="db-empty">no layout linked</div>
     </div>
   </details>
 </template>

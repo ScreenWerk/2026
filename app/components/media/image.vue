@@ -8,9 +8,12 @@ const emit = defineEmits<{ ended: [] }>()
 const src = computed(() => props.media.file)
 
 // Object-fit value: 'fill' if stretch, otherwise 'contain'.
-const objectFit = computed(() => props.media.stretch ? 'fill' : 'contain')
+const objectFit = computed(() => (props.media.stretch ? 'fill' : 'contain'))
 
-useMediaTimer(() => props.media, () => emit('ended'))
+useMediaTimer(
+  () => props.media,
+  () => emit('ended')
+)
 </script>
 
 <template>
@@ -21,5 +24,5 @@ useMediaTimer(() => props.media, () => emit('ended'))
     :style="{ objectFit }"
     class="absolute inset-0 size-full"
     @error="() => console.warn('[image] load error', src)"
-  >
+  />
 </template>

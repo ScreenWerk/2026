@@ -7,7 +7,10 @@ const emit = defineEmits<{ ended: [] }>()
 // Computed URL from media.
 const src = computed(() => props.media.url)
 
-useMediaTimer(() => props.media, () => emit('ended'))
+useMediaTimer(
+  () => props.media,
+  () => emit('ended')
+)
 </script>
 
 <template>

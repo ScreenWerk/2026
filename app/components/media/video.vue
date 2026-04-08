@@ -10,7 +10,7 @@ const videoEl = ref<HTMLVideoElement | null>(null)
 const src = computed(() => props.media.file)
 
 // Object-fit value: 'fill' if stretch, otherwise 'contain'.
-const objectFit = computed(() => props.media.stretch ? 'fill' : 'contain')
+const objectFit = computed(() => (props.media.stretch ? 'fill' : 'contain'))
 
 useMediaPlayback(
   videoEl,
@@ -31,6 +31,13 @@ useMediaPlayback(
     crossorigin="anonymous"
     playsinline
     @ended="emit('ended')"
-    @error="(e) => console.warn('[video] load error', src, (e.target as HTMLVideoElement)?.error)"
+    @error="
+      (e) =>
+        console.warn(
+          '[video] load error',
+          src,
+          (e.target as HTMLVideoElement)?.error
+        )
+    "
   />
 </template>

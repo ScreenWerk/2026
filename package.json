@@ -3,6 +3,10 @@
   "private": true,
   "type": "module",
   "scripts": {
+    "format": "prettier --write \"app/**/*.{ts,vue}\"",
+    "format:check": "prettier --check \"app/**/*.{ts,vue}\"",
+    "test": "vitest run",
+    "test:watch": "vitest",
     "lint": "eslint . --fix --config .config/eslint.config.ts",
     "dev": "nuxt dev",
     "build": "nuxt build",
@@ -17,13 +21,19 @@
   },
   "devDependencies": {
     "@nuxt/eslint": "1.15.2",
+    "@nuxt/test-utils": "^4.0.0",
     "@nuxtjs/tailwindcss": "6.14.0",
     "@vite-pwa/nuxt": "1.1.1",
+    "@vue/test-utils": "^2.4.6",
     "@vueuse/core": "14.2.1",
     "cron-parser": "5.5.0",
     "eslint": "10.0.3",
+    "eslint-config-prettier": "^10.1.8",
     "eslint-plugin-tailwindcss": "3.18.2",
+    "happy-dom": "^20.8.9",
     "nuxt": "4.4.2",
-    "typescript": "5.9.3"
+    "prettier": "^3.8.1",
+    "typescript": "5.9.3",
+    "vitest": "^4.1.3"
   }
 }

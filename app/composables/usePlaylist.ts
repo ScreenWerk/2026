@@ -12,7 +12,7 @@ import type { LayoutPlaylist, PlaylistMedia } from '~/types'
  * - Resets to 0 on new cron tick when cleanup is enabled
  * - Resets to 0 when the layoutPlaylist eid changes (schedule switch)
  */
-export function usePlaylist (
+export function usePlaylist(
   getLayoutPlaylist: () => LayoutPlaylist,
   getCleanup: () => boolean,
   getLastCronTick: () => Date,
@@ -25,8 +25,8 @@ export function usePlaylist (
   const validMedias = computed<PlaylistMedia[]>(() => {
     const t = getNow()
 
-    return getLayoutPlaylist().playlistMedias
-      .filter((m) => isWithinValidityWindow(m, t))
+    return getLayoutPlaylist()
+      .playlistMedias.filter((m) => isWithinValidityWindow(m, t))
       .sort((a, b) => a.ordinal - b.ordinal)
   })
 
@@ -48,23 +48,24 @@ export function usePlaylist (
   })
 
   // Reset index when the layoutPlaylist changes (schedule switch).
-  watch(() => getLayoutPlaylist().eid, () => {
-    index.value = 0
-  })
+  watch(
+    () => getLayoutPlaylist().eid,
+    () => {
+      index.value = 0
+    }
+  )
 
   // Increments on every advance() to force media component remount via :key.
   const playKey = ref(0)
 
   // Advance to the next media in the playlist.
-  function advance () {
+  function advance() {
     const len = validMedias.value.length
     if (!len) return
 
     const next = index.value + 1
 
-    index.value = next >= len
-      ? (getLayoutPlaylist().loop ? 0 : len - 1)
-      : next
+    index.value = next >= len ? (getLayoutPlaylist().loop ? 0 : len - 1) : next
 
     playKey.value++
   }

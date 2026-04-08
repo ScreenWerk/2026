@@ -4,18 +4,19 @@ import type { PlaylistMedia } from '~/types'
  * Manages delay and duration timers for media playback.
  * Handles setup, cleanup, and reactivity for media components.
  */
-export function useMediaTimer (
+export function useMediaTimer(
   getMedia: () => PlaylistMedia,
   onComplete: () => void
 ) {
   const runtimeConfig = useRuntimeConfig()
-  const defaultDuration = runtimeConfig.public.defaultMediaDurationSeconds as number
+  const defaultDuration = runtimeConfig.public
+    .defaultMediaDurationSeconds as number
 
   let delayTimer: ReturnType<typeof setTimeout> | null = null
   let durationTimer: ReturnType<typeof setTimeout> | null = null
 
   // Clear any active timers.
-  function clearTimers () {
+  function clearTimers() {
     if (delayTimer) {
       clearTimeout(delayTimer)
       delayTimer = null
@@ -28,21 +29,25 @@ export function useMediaTimer (
   }
 
   // Start the duration timer to emit completion after duration.
-  function startDuration () {
+  function startDuration() {
     const media = getMedia()
-    durationTimer = setTimeout(onComplete, (media.duration ?? defaultDuration) * 1000)
+    durationTimer = setTimeout(
+      onComplete,
+      (media.duration ?? defaultDuration) * 1000
+    )
   }
 
   // Setup timers: delay then duration.
-  function setup () {
+  function setup() {
     clearTimers()
 
     const media = getMedia()
     const delay = media.delay ?? 0
 
-    delayTimer = delay > 0
-      ? setTimeout(startDuration, delay * 1000)
-      : (startDuration(), null)
+    delayTimer =
+      delay > 0
+        ? setTimeout(startDuration, delay * 1000)
+        : (startDuration(), null)
   }
 
   // React to media changes.

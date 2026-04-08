@@ -4,7 +4,7 @@ import type { ScreenConfig } from '~/types'
  * Proactively caches all media files from a screen config into the Cache API.
  * Removes files no longer referenced. Best-effort — failures are silently ignored.
  */
-export async function precacheMedia (cfg: ScreenConfig) {
+export async function precacheMedia(cfg: ScreenConfig) {
   if (!('caches' in window)) return
 
   const runtimeConfig = useRuntimeConfig()
@@ -28,16 +28,22 @@ export async function precacheMedia (cfg: ScreenConfig) {
     if (stale.length) {
       console.log('[precache] removing', stale.length, 'stale files')
 
-      await Promise.all(stale.map((req) => {
-        console.log('[precache] removed', req.url)
+      await Promise.all(
+        stale.map((req) => {
+          console.log('[precache] removed', req.url)
 
-        return cache.delete(req)
-      }))
+          return cache.delete(req)
+        })
+      )
     }
 
     // Fetch missing files not yet in cache.
     const missing = (
-      await Promise.all([...unique].map(async (u) => ((await cache.match(u, { ignoreVary: true })) ? null : u)))
+      await Promise.all(
+        [...unique].map(async (u) =>
+          (await cache.match(u, { ignoreVary: true })) ? null : u
+        )
+      )
     ).filter((u): u is string => u !== null)
 
     if (!missing.length) {
@@ -46,7 +52,13 @@ export async function precacheMedia (cfg: ScreenConfig) {
       return
     }
 
-    console.log('[precache]', missing.length, 'of', unique.size, 'files to cache')
+    console.log(
+      '[precache]',
+      missing.length,
+      'of',
+      unique.size,
+      'files to cache'
+    )
 
     let done = 0
 
@@ -59,8 +71,7 @@ export async function precacheMedia (cfg: ScreenConfig) {
                 console.log(`[precache] ${++done} of ${missing.length}`, url)
 
                 return cache.put(url, r)
-              }
-              else {
+              } else {
                 console.warn('[precache] failed', r.status, url)
               }
             })
@@ -70,8 +81,7 @@ export async function precacheMedia (cfg: ScreenConfig) {
     }
 
     console.log('[precache] done')
-  }
-  catch {
+  } catch {
     // Best-effort pre-caching — ignore failures silently.
   }
 }

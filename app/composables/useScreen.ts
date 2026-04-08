@@ -6,11 +6,13 @@ import type { Schedule } from '~/types'
  * - Evaluates the active schedule via cron + validity windows
  * - Drives a 30s clock and exposes reactive state to the template
  */
-export function useScreen (getScreenId: () => string) {
+export function useScreen(getScreenId: () => string) {
   const { screenConfig, loadConfig } = useScreenConfig(getScreenId)
   const runtimeConfig = useRuntimeConfig()
-  const clockIntervalMs = (runtimeConfig.public.clockIntervalSeconds as number) * 1000
-  const defaultUpdateInterval = runtimeConfig.public.defaultUpdateIntervalMinutes as number
+  const clockIntervalMs =
+    (runtimeConfig.public.clockIntervalSeconds as number) * 1000
+  const defaultUpdateInterval = runtimeConfig.public
+    .defaultUpdateIntervalMinutes as number
 
   const activeSchedule = ref<Schedule | null>(null)
   const lastCronTick = ref<Date>(new Date(0))
@@ -22,7 +24,9 @@ export function useScreen (getScreenId: () => string) {
 
     const t = now.value
 
-    return activeSchedule.value.layoutPlaylists.filter((lp) => isWithinValidityWindow(lp, t))
+    return activeSchedule.value.layoutPlaylists.filter((lp) =>
+      isWithinValidityWindow(lp, t)
+    )
   })
 
   // Calculate scale transform to fit schedule canvas to window.
@@ -43,7 +47,7 @@ export function useScreen (getScreenId: () => string) {
   })
 
   // Resolve the active schedule and update cron tick.
-  function evaluateSchedule () {
+  function evaluateSchedule() {
     if (!screenConfig.value) return
 
     const t = now.value
@@ -63,11 +67,15 @@ export function useScreen (getScreenId: () => string) {
   let pollTimer: ReturnType<typeof setTimeout> | null = null
 
   // Start periodic config refresh polling.
-  function startPolling () {
-    const intervalMs = (screenConfig.value?.updateInterval ?? defaultUpdateInterval) * 60_000
+  function startPolling() {
+    const intervalMs =
+      (screenConfig.value?.updateInterval ?? defaultUpdateInterval) * 60_000
     const nextRefresh = new Date(Date.now() + intervalMs)
 
-    console.log('[screen] next refresh:', nextRefresh.toISOString().slice(0, 19).replace('T', ' '))
+    console.log(
+      '[screen] next refresh:',
+      nextRefresh.toISOString().slice(0, 19).replace('T', ' ')
+    )
 
     pollTimer = setTimeout(async () => {
       await loadConfig()
