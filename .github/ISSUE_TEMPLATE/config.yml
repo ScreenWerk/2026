@@ -1,0 +1,6 @@
+# Keep blank issues enabled for tasks / features / chores that don't fit the bug form.
+blank_issues_enabled: true
+contact_links:
+  - name: "📣 Client-facing communication"
+    url: https://github.com/ScreenWerk/2026/issues
+    about: "Messages to clients (Piletilevi / Bilietai) go through the PO — never contact clients directly from an issue."
